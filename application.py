@@ -5,7 +5,7 @@ import numpy as np
 from flask import request
 from flask_cors import CORS, cross_origin
 import json
-from src.modal_properties import calculate_modal_properties
+from .modal_properties import calculate_modal_properties
 
 application = Flask(__name__)
 cors = CORS(application)

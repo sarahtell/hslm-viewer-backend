@@ -2,7 +2,7 @@
 .PHONY: test
 
 test:
-	pytest
+	(PYTHONPATH=./src pytest test/test.py )
 
 venv:
 	(python -m venv venv && source venv/Scripts/activate && pip install -r requirements.txt)
