@@ -64,7 +64,7 @@ def calculate_modal_dampings(damping_ratio, mass, circular_frequencies, mode_num
 def calculate_modal_properties(
     mass, youngs_modulus, moment_of_inertia, damping_ratio, length, element_size, mode_numbers
 ):
-
+    mode_numbers = range(mode_numbers)
     modal_masses = calculate_modal_masses(mass, length, mode_numbers)
     modal_stiffnesses = calculate_modal_stiffnesses(
         
