@@ -61,6 +61,21 @@ def calculate_modal_dampings(damping_ratio, mass, circular_frequencies, mode_num
     ]
 
 
+
+def calculate_modal_forces(train_distances,train_axle_forces,train_speeds,time,mode_numbers,spatial_coordinate,length):
+    
+        # for time in times:
+        #     for speed in speeds:
+        #         for mode in modes:
+        #         calculate_train_vector(train_distances,train_axle_forces,speed,time)*define_mode_shape(mode,np.subtract(speed*time,train_distances),length)
+
+
+
+    train_vector = calculate_train_vector(train_distances,train_axle_forces,train_speeds,time,length)
+    mode_shape = define_mode_shape(mode_number, np.subtract(train_speeds*time,train_distances), length) 
+
+    return train_vector 
+
 def calculate_modal_properties(
     mass, youngs_modulus, moment_of_inertia, damping_ratio, length, element_size, mode_numbers
 ):
@@ -75,6 +90,3 @@ def calculate_modal_properties(
     )
 
     return modal_masses, modal_dampings, modal_stiffnesses, circular_frequencies
-
-def calculate_modal_forces(train_distances,train_axle_forces,train_speeds,mode_numbers,spatial_coordinate,length):
-    return np.matrix([[1,2,3],[4,5,6]])
