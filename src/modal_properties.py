@@ -113,7 +113,6 @@ def calculate_modal_forces(
     return modal_forces """
 
 
-
 def get_modal_properties(
     bridge_mass,
     youngs_modulus,
