@@ -1,5 +1,5 @@
 import numpy as np
-from train_properties import get_train_vector
+from src.train_properties import get_train_vector
 from src.modal_properties import (
     get_modal_properties,
     calculate_modal_forces,
