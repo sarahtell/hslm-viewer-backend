@@ -1,7 +1,7 @@
 import numpy as np
 from scipy import integrate
 from scipy.misc import derivative
-from train_properties import calculate_train_vector, calculate_train_distances, calculate_axle_forces
+from src.train_properties import calculate_train_vector, calculate_train_distances, calculate_axle_forces
 
 
 def define_mode_shape(mode_number, spatial_coordinate, bridge_length):

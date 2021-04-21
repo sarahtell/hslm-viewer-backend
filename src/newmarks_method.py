@@ -1,5 +1,5 @@
 import numpy as np
-from modal_properties import calculate_time_vector
+from src.modal_properties import calculate_time_vector
 BETA = 0.25
 GAMMA = 0.5
 

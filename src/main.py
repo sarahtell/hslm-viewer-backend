@@ -1,11 +1,11 @@
 import numpy as np
 from train_properties import get_train_vector
-from modal_properties import (
+from src.modal_properties import (
     get_modal_properties,
     calculate_modal_forces,
     create_mode_matrix,
 )
-from newmarks_method import newmark_time_integration
+from src.newmarks_method import newmark_time_integration
 
 
 def calculate_bridge_response(
