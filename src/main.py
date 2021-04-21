@@ -19,12 +19,14 @@ def calculate_bridge_response(
     train_speed,
     hslm_number,
 ):
+    mode_numbers = range(mode_numbers)
     (
         modal_masses,
         modal_dampings,
         modal_stiffnesses,
         circular_frequencies,
         modal_forces,
+        time_vector
     ) = get_modal_properties(
         bridge_mass,
         youngs_modulus,
@@ -45,6 +47,5 @@ def calculate_bridge_response(
     bridge_acceleration = np.dot(modal_acceleration, mode_shape)
     midacc = bridge_acceleration[:,210]
     max_bridge_acceleration = bridge_acceleration.max()
-    print(midacc,midacc.shape)
 
-    raise Exception
+    return midacc, time_vector 

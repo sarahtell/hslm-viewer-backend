@@ -80,7 +80,7 @@ def test_calculate_bridge_repsonse():
     damping_ratio = 0.005
     bridge_length = 42
     element_size = 0.1
-    mode_numbers = [0, 1, 2]
+    mode_numbers = 3
     train_speed = 41
     hslm_number = 4
     bridge_acceleration = calculate_bridge_response(

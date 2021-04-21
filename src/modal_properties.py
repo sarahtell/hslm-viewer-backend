@@ -137,7 +137,7 @@ def get_modal_properties(
     time_vector = calculate_time_vector()
     modal_forces = calculate_modal_forces(train_speed, time_vector, mode_numbers, spatial_coordinate, bridge_length, hslm_number)
 
-    return modal_masses, modal_dampings, modal_stiffnesses, circular_frequencies, modal_forces
+    return modal_masses, modal_dampings, modal_stiffnesses, circular_frequencies, modal_forces, time_vector
 
 def calculate_time_vector():
     return np.arange(0, 10, 0.1) # Todo: Hardcoded for now...change later.

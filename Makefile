@@ -15,4 +15,4 @@ request:
 
 
 serve:
-	(source venv/Scripts/activate && FLASK_APP=application.py FLASK_ENV=development flask run)
+	(source venv/Scripts/activate && PYTHONPATH=./src FLASK_APP=application.py FLASK_ENV=development flask run)
