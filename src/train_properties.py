@@ -40,7 +40,7 @@ def _create_train_distances(
 def calculate_train_distances(hslm_number):
 
     end_coach_distances = _create_end_coach_distances(hslm_number)
-    intermediate_coach_distances = _create_intermediate_coach_distance(hslm_number)
+    intermediate_coach_distances = _create_intermediate_coach_distances(hslm_number)
     train_distances = _create_train_distances(
         hslm_number, end_coach_distances, intermediate_coach_distances
     )
@@ -48,31 +48,36 @@ def calculate_train_distances(hslm_number):
     return train_distances
 
 
-def calculate_axle_forces(hslm_number):
+def calculate_axle_forces(hslm_number,train_distances):
 
-    train_axle_forces = -POINT_LOAD[hslm_number - 1]  # * np.ones(len(train_distances))
+    train_axle_forces = -POINT_LOAD[hslm_number - 1] * np.ones(len(train_distances))
 
     return train_axle_forces
 
 
 def calculate_train_vector(
-    train_speeds, time, bridge_length, train_distances, train_axle_forces
+    train_speed, time, bridge_length, train_distances, train_axle_forces
 ):
-    return np.multiply(
-        train_axle_forces,
-        np.heaviside(np.subtract(time, np.divide(train_distances, train_speeds)), 0)
+    train_vector = []
+    for index in range(len(train_distances)): 
+    
+        train_vector.append(np.multiply(
+        train_axle_forces[index],
+        np.heaviside(np.subtract(time, np.divide(train_distances[index], train_speed)), 0)
         - np.heaviside(
             np.subtract(
-                time, np.divide(np.add(bridge_length, train_distances), train_speeds)
+                time, np.divide(np.add(bridge_length, train_distances[index]), train_speed)
             ),
             0,
         ),
     )
+        )
+    return np.array(train_vector) 
 
 
-def get_train_vector(train_speeds, time, bridge_length):
+def get_train_vector(train_speed, time, bridge_length):
     train_distances =calculate_train_distances(hslm_number)
-    train_axle_forces = calculate_axle_forces(hslm_number)
+    train_axle_forces = calculate_axle_forces(hslm_number,train_distances)
     return calculate_train_vector(
-        train_speeds, time, bridge_length, train_distances, train_axle_forces
+        train_speed, time, bridge_length, train_distances, train_axle_forces
     )
