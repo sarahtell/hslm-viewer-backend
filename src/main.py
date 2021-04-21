@@ -47,5 +47,5 @@ def calculate_bridge_response(
     bridge_acceleration = np.dot(modal_acceleration, mode_shape)
     midacc = bridge_acceleration[:,210]
     max_bridge_acceleration = bridge_acceleration.max()
-
+    
     return midacc, time_vector 
