@@ -85,10 +85,10 @@ def calculate_modal_forces(
             train_speed, time, bridge_length, train_distances, train_axle_forces
             )
         for mode_index, mode_number in enumerate(mode_numbers):
-            for dist_index in len(range(train_distances)):
+            for index in range(len(train_distances)): 
                 mode_shape = define_mode_shape(
                     mode_number,
-                    np.subtract(train_speed * time, train_distances[dist_index]),
+                    np.subtract(train_speed * time, train_distances[index]),
                     bridge_length,
                 )
             modal_forces[:, mode_index] = np.dot(np.transpose(mode_shape),np.nan_to_num(train_vector))
