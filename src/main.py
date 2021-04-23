@@ -44,7 +44,7 @@ def calculate_bridge_response(
     )
 
     mode_shape = create_mode_matrix(mode_numbers, bridge_length, element_size)
-    bridge_acceleration = np.dot(modal_acceleration, mode_shape)
+    bridge_acceleration = np.dot(modal_displacement, mode_shape)
     midacc = bridge_acceleration[:,210]
     max_bridge_acceleration = bridge_acceleration.max()
     
