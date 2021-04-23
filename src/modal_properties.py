@@ -85,15 +85,32 @@ def calculate_modal_forces(
             train_speed, time, bridge_length, train_distances, train_axle_forces
             )
         for mode_index, mode_number in enumerate(mode_numbers):
-            for index in range(len(train_distances)): 
-                mode_shape = define_mode_shape(
-                    mode_number,
-                    np.subtract(train_speed * time, train_distances[index]),
-                    bridge_length,
-                )
+            mode_shape = define_mode_shape(
+                mode_number,
+                np.subtract(train_speed * time, train_distances),
+                bridge_length,
+            )
             modal_forces[:, mode_index] = np.dot(np.transpose(mode_shape),np.nan_to_num(train_vector))
 
     return modal_forces
+
+"""     train_distances = calculate_train_distances(hslm_number)
+    train_axle_forces = calculate_axle_forces(hslm_number,train_distances)
+    modal_forces = np.zeros((time_vector.shape[0],len(mode_numbers)))
+    for time_index in range(len(time_vector)-1):
+        for mode_index in range(len(mode_numbers)-1):
+            train_vector = calculate_train_vector(
+                train_speed, time_vector[time_index], bridge_length, train_distances, train_axle_forces
+            )
+            mode_shape = define_mode_shape(
+                mode_numbers[mode_index],
+                np.subtract(train_speed * time_vector[time_index], train_distances),
+                bridge_length,
+            )
+            print(modal_forces.shape)
+            modal_forces[:, mode_index] = np.dot(np.transpose(mode_shape),np.nan_to_num(train_vector))
+
+    return modal_forces """
 
 
 def get_modal_properties(
