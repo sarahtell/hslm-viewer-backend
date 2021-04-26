@@ -1,11 +1,11 @@
 import numpy as np
-from src.train_properties import get_train_vector
-from src.modal_properties import (
+from train_properties import get_train_vector
+from modal_properties import (
     get_modal_properties,
     calculate_modal_forces,
     create_mode_matrix,
 )
-from src.newmarks_method import newmark_time_integration
+from newmarks_method import newmark_time_integration
 
 
 def calculate_bridge_response(
@@ -44,8 +44,8 @@ def calculate_bridge_response(
     )
 
     mode_shape = create_mode_matrix(mode_numbers, bridge_length, element_size)
-    bridge_acceleration = np.dot(modal_acceleration, mode_shape)
-    midacc = bridge_acceleration[:,210]
+    bridge_acceleration = np.dot(modal_displacement, mode_shape)
+    midacc = np.squeeze(np.asarray(bridge_acceleration[:,210]))
     max_bridge_acceleration = bridge_acceleration.max()
     
     return midacc, time_vector 

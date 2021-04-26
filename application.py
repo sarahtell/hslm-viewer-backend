@@ -6,7 +6,7 @@ from flask import request
 from flask_cors import CORS, cross_origin
 import json
 # from .modal_properties import calculate_modal_properties
-from src.main import calculate_bridge_response
+from main import calculate_bridge_response
 
 application = Flask(__name__)
 cors = CORS(application)
