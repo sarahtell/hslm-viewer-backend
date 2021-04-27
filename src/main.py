@@ -45,7 +45,8 @@ def calculate_bridge_response(
 
     mode_shape = create_mode_matrix(mode_numbers, bridge_length, element_size)
     bridge_displacement = np.dot(modal_displacement, mode_shape)
-    midpoint_displacement = np.squeeze(np.asarray(bridge_displacement[:,210]))
+    midpoint_DOF = int(np.around(np.divide(bridge_length,2*element_size))) 
+    midpoint_displacement = np.squeeze(np.asarray(bridge_displacement[:,midpoint_DOF]))
     max_bridge_displacement = bridge_displacement.max()
     
     return midpoint_displacement, time_vector 
