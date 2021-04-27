@@ -117,13 +117,21 @@ def get_modal_properties(
     )
 
     spatial_coordinate = calculate_spatial_coordinate(bridge_length, element_size)
+    #time_vector = calculate_time_vector(bridge_length, train_speed, hslm_number)
     time_vector = calculate_time_vector()
     modal_forces = calculate_modal_forces(train_speed, time_vector, mode_numbers, spatial_coordinate, bridge_length, hslm_number)
 
     return modal_masses, modal_dampings, modal_stiffnesses, circular_frequencies, modal_forces, time_vector
+""" 
+def calculate_time_vector(bridge_length, train_speed, hslm_number):
+    train_distances = calculate_train_distances(hslm_number)
+    maximum_time = np.divide(np.add(bridge_length,train_distances.max()),train_speed)
+    return np.arange(0, maximum_time+0.1, 0.1) # Todo: Hardcoded for now...change later. """
 
-def calculate_time_vector():
-    return np.arange(0, 15, 0.1) # Todo: Hardcoded for now...change later.
+def calculate_time_vector(bridge_length, train_speed, hslm_number):
+    train_distances = calculate_train_distances(hslm_number)
+    maximum_time = np.divide(np.add(bridge_length,train_distances.max()),train_speed)
+    return np.arange(0, maximum_time+0.1, 0.1) # Todo: Hardcoded for now...change later.
 
 def calculate_spatial_coordinate(bridge_length, element_size):
     return np.arange(0, bridge_length+element_size, element_size)

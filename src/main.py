@@ -40,12 +40,12 @@ def calculate_bridge_response(
     )
 
     modal_acceleration, modal_velocity, modal_displacement = newmark_time_integration(
-        modal_masses, modal_dampings, modal_stiffnesses, modal_forces
+        modal_masses, modal_dampings, modal_stiffnesses, modal_forces, mode_numbers
     )
 
     mode_shape = create_mode_matrix(mode_numbers, bridge_length, element_size)
-    bridge_acceleration = np.dot(modal_displacement, mode_shape)
-    midacc = np.squeeze(np.asarray(bridge_acceleration[:,210]))
-    max_bridge_acceleration = bridge_acceleration.max()
+    bridge_displacement = np.dot(modal_displacement, mode_shape)
+    midpoint_displacement = np.squeeze(np.asarray(bridge_displacement[:,210]))
+    max_bridge_displacement = bridge_displacement.max()
     
-    return midacc, time_vector 
+    return midpoint_displacement, time_vector 
