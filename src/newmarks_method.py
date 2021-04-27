@@ -9,7 +9,8 @@ def calculate_fixed_denominator(modal_mass, modal_damping, modal_stiffness, time
 
 
 def newmark_time_integration(modal_mass, modal_damping, modal_stiffness, modal_forces, mode_numbers):
-    time_vector = calculate_time_vector(bridge_length, train_speed, hslm_number)
+    #time_vector = calculate_time_vector(bridge_length, train_speed, hslm_number)
+    time_vector = calculate_time_vector()
     modal_displacement = [np.array([0]*len(mode_numbers))]
     modal_velocity = [np.array([0]*len(mode_numbers))] 
     modal_acceleration = [np.divide(
